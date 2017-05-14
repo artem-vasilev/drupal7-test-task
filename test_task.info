@@ -1,0 +1,5 @@
+name = Test task module
+description = Contains test task.
+core = 7.x
+package = Test tasks
+configure = admin/config/development/test-task

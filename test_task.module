@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * Implements hook_menu().
+ */
+function test_task_menu() {
+  $items = [];
+
+  $items['admin/config/development/test-task'] = [
+    'title' => t('Test task settings'),
+    'description' => t('Test task'),
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['test_task_user_settings'],
+    'file' => 'test_task.admin.inc',
+    'access arguments' => ['administer site configuration']
+  ];
+
+  $items['admin/config/development/test-task/users-batch-update'] = [
+    'title' => 'Update user Last name',
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'weight' => -10
+  ];
+
+  $items['admin/config/development/test-task/request-maker'] = [
+    'title' => 'Send request',
+    'type' => MENU_LOCAL_TASK,
+    'page callback' => 'drupal_get_form',
+    'page arguments' => ['test_task_request_settings'],
+    'file' => 'test_task.admin.inc',
+    'access arguments' => ['administer site configuration']
+  ];
+
+  return $items;
+}

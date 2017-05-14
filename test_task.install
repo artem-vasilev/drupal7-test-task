@@ -1,0 +1,44 @@
+<?php
+
+/**
+ * @file
+ * Contains install functions for test_task module.
+ */
+
+
+/**
+ * Implements hook_install().
+ */
+function test_task_install() {
+
+  $field = [
+    'field_name' => 'last_name',
+    'type' => 'text',
+  ];
+
+  field_create_field($field);
+
+  $instance = [
+    'field_name' => 'last_name',
+    'entity_type' => 'user',
+    'bundle' => 'user',
+    'label' => 'Last name',
+  ];
+
+  field_create_instance($instance);
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function test_task_uninstall() {
+  field_delete_instance(
+    [
+      'field_name' => 'last_name',
+      'entity_type' => 'user',
+      'bundle' => 'user',
+      'label' => 'Last name',
+    ]
+  );
+  field_delete_field('last_name');
+}
